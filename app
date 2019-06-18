@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html ng-app="application">
+<head>
+    <meta charset="utf-8">
+    <!-- bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- bootstrap theme -->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+</head>
+<body>
+    <header>
+      <h1 class="text-center">{{"lucky"| uppercase}}{{"-Kanyanat"}}'s Sushi Store</h1>
+      <h2 class="text-center">Open Since {{10*199+7}}.</h2>
+    </header>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="list-group" ng-controller="storeController as store">
+                    <!-- clearfix class: find answer in Bootstrap CSS -->
+                    <div class="list-group-item clearfix" ng-repeat="sushi in sushis" ng-class="{'selected':purchase(sushi)}">
+                        <h1>{{sushi.name}}
+                            <em class="pull-right">{{sushi.price | number:2}} บาท</em>
+                        </h1>
+                        <div class="col-md-6"><img ng-src="{{sushi.image}}"></div>
+                        <div class="col-md-6">
+                            <h3><strong>{{sushi.quantity}}</strong></h3>
+                            <button class="btn btn-default pull-right" ng-show="purchase(sushi)">สั่งซื้อ</button>
+                            <button class="btn btn-default" ng-click="clickAdd(sushi)">Δ เพิ่มจ้าาา</button>
+                            <button class="btn btn-default" ng-click="clickRemove(sushi)">∇ ลดจ้าา</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/lib/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="js/lib/bootstrap.min.js"></script>
+    <!-- AngularJS JavaScript -->
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
+
+
+
+
+(function () {
+    'use strict';
+     
+    var app = angular.module('application', []);
+    app.controller('storeController', ['$scope', function ($scope) {
+        $scope.sushis = [
+            {
+                name: 'Maguro',
+                price: 200,
+                description: "Fat Tuna",
+                quantity: 0,
+                image:  'home/c-arg-dev-034/Desktop/maguro.jpg'
+            },
+            {
+                name: 'Tamago',
+                price: 120,
+                description: "Rice With Egg",
+                quantity: 0,
+                image: '../image/sushi/ebi.jpg'
+            },
+            {
+                name: 'Ebi',
+                price: 150,
+                description: "Rice With shrimp",
+                quantity: 0,
+                image: '../image/sushi/ebi.jpg'
+            }
+        ];
+        $scope.purchase = function (item) {
+            if (item.quantity > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        };
+        $scope.clickAdd = function (item) {
+            item.quantity += 1;
+        };
+        $scope.clickRemove = function (item) {
+            if (item.quantity > 0) {
+                item.quantity -= 1;
+                return true;
+            } else {
+                return false;   
+            }
+        };
+    }]);
+     
+})();
+
