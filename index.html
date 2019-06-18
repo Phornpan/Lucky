@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="application">
+    <head>
+        <meta charset="utf-8">
+        <!-- bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- bootstrap theme -->
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    </head>
+    <body ng-controller="demoController as demo">
+        <div class="container">
+            <form class="form-horizontal" ng-submit="addData(datas)">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Form Name</legend>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <div>
+                            <label class="col-md-4 control-label" for="textinput">Name</label>
+                            <input type="text" ng-model="data.text" name="textinput" id="textinput" class="form-control input-md">
+                        </div>
+
+                        <br>
+
+                        <div>
+                            <label class="col-md-4 control-label" for="textinput">Surname</label>
+                            <input type="text" ng-model="data1.text" name="textinput" id="textinput" class="form-control input-md">
+                        </div>
+
+                        <br>
+
+                        <div>
+                            <label class="col-md-4 control-label" for="textinput">Age</label>
+                            <input type="text" ng-model="data2.text" name="textinput" id="textinput" class="form-control input-md">
+                        </div>
+
+                        <br>
+
+                        <div>
+                            <form action="/action_page.php">
+                            <label class="col-md-4 control-label" for="textinput">B.Date</label>
+                            <input type="date" ng-model="data3.text" name="bday" id="textinput" class="form-control input-md">
+                            </form>
+                        </div>
+                        <!-- Button -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="singlebutton">Show</label>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary">Show</button>
+                            </div>
+                        </div>
+                </fieldset>
+            </form>
+
+            <div class="list-group">
+                <div class="list-group-item clearfix" ng-repeat="data in datas">
+                    <h3>data.json</h3>
+                   <h3>Text Input Surname : {{data1.json}}</h3>
+                   <h3>Text Input Age : {{data2.json}}</h3>
+                   <h3>Text Input B.Date : {{data3.text}}</h3>
+                </div>
+            </div>
+
+            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <script src="js/lib/jquery.min.js"></script>
+            <!-- Bootstrap JavaScript -->
+            <script src="js/lib/bootstrap.min.js"></script>
+            <!-- AngularJS JavaScript -->
+            <script src="js/lib/angular.min.js"></script>
+            <script src="demo1-Training.js"></script>
+    </body>
+</html>
